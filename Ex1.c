@@ -2,25 +2,27 @@
 
 int main() {
     int primeiroArray[10];
-    int segundoArray[10];
-    int soma;
-    int primeiro=0, segundo=1, proximo;
 
-    for (int i = 0; i < 10; ++i) {
-        scanf("%d", &primeiroArray[i]);
+    for (int z = 0; z < 10; ++z) {
+        scanf("%d", &primeiroArray[z]);
     }
 
-    for (int i = 1; i < 10; ++i) {
-        soma = primeiroArray[primeiro] + primeiroArray[segundo];
-        printf("%d ", soma);
-        segundoArray[i-1] = soma;
-        primeiro = segundo;
-        segundo = 1 + i;
-    }
-    printf("\n");
+    for (int i = 0; i < 9; ++i) {
+        int segundoArray[10 - i]; // Tamanho do array diminui a cada iteração
 
-    for (int i = 0; i < 10; ++i) {
-        primeiroArray[i] = segundoArray[i];
+        for (int z = 0; z < 10 - i; ++z) {
+            int soma = primeiroArray[z] + primeiroArray[z + 1];
+            printf("%d ", soma);
+            segundoArray[z] = soma;
+        }
+        printf("\n");
+
+        int tamanhoSegundoArray = sizeof(segundoArray) / sizeof(segundoArray[0]);
+
+        // Atualize primeiroArray para o próximo ciclo
+        for (int z = 0; z < 9 - i; ++z) {
+            primeiroArray[z] = segundoArray[z];
+        }
     }
 
     return 0;
