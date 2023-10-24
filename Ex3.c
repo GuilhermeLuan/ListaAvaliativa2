@@ -29,39 +29,41 @@ void multiplicarMatrizes(int primeiraMatriz[4][4], int segundaMatriz[4][4], int 
     }
 }
 
+void inputMatriz(int matriz[4][4]){
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+}
+
+void printMatrizResultado(int matriz[4][4]){
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf("%1d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
 int main() {
-    int primeiraMatriz[4][4], segundaMatriz[4][4], terceiraMatriz[4][4];
+    int primeiraMatriz[4][4], segundaMatriz[4][4], matrizResultado[4][4];
     char operacaoMatriz[5];
 
-    for (int i = 0; i < 4; ++i) {
-        for (int j = 0; j < 4; ++j) {
-            scanf("%d", &primeiraMatriz[i][j]);
-        }
-    }
-
-    for (int i = 0; i < 4; ++i) {
-        for (int j = 0; j < 4; ++j) {
-            scanf("%d", &segundaMatriz[i][j]);
-        }
-    }
+    inputMatriz(primeiraMatriz);
+    inputMatriz(segundaMatriz);
 
     scanf(" %s", &operacaoMatriz);
 
     if((strcmp(operacaoMatriz, "sub")) == 0){
-        subtrairMatrizes(primeiraMatriz, segundaMatriz, terceiraMatriz);
+        subtrairMatrizes(primeiraMatriz, segundaMatriz, matrizResultado);
     } else if ((strcmp(operacaoMatriz, "soma")) == 0){
-        somarMatrizes(primeiraMatriz, segundaMatriz, terceiraMatriz);
+        somarMatrizes(primeiraMatriz, segundaMatriz, matrizResultado);
     } else {
-        multiplicarMatrizes(primeiraMatriz, segundaMatriz, terceiraMatriz);
+        multiplicarMatrizes(primeiraMatriz, segundaMatriz, matrizResultado);
     }
 
-
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            printf("%1d ", terceiraMatriz[i][j]);
-        }
-        printf("\n");
-    }
+    printMatrizResultado(matrizResultado);
 
     return 0;
 }

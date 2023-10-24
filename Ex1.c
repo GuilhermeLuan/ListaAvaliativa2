@@ -1,39 +1,52 @@
 #include <stdio.h>
 
+void lerValores(int array[], int tamanho) {
+    for (int i = 0; i < tamanho; ++i) {
+        scanf("%d", &array[i]);
+    }
+}
+
+void imprimirArray(int array[], int tamanho) {
+    for (int i = 0; i < tamanho; ++i) {
+        if (i == tamanho - 1) {
+            printf("%d", array[i]);
+        } else {
+            printf("%d ", array[i]);
+        }
+    }
+    printf("\n");
+}
+
+
+void calcularSomaEAtualizar(int array[], int tamanho) {
+    int novoArray[tamanho - 1];
+
+    for (int i = 0; i < tamanho - 1; ++i) {
+        int soma = array[i] + array[i + 1];
+        if (i == tamanho - 2) {
+            printf("%d", soma);
+        } else {
+            printf("%d ", soma);
+        }
+        novoArray[i] = soma;
+    }
+
+    printf("\n");
+
+    for (int i = 0; i < tamanho - 1; ++i) {
+        array[i] = novoArray[i];
+    }
+}
+
 int main() {
     int primeiroArray[10];
 
-    for (int z = 0; z < 10; ++z) {
-        scanf("%d", &primeiroArray[z]);
-    }
+    lerValores(primeiroArray, 10);
+    imprimirArray(primeiroArray, 10);
 
-    for (int i = 0; i < 10; ++i) {
-        if (i == 9){
-            printf("%d", primeiroArray[i]);
-        } else {
-            printf("%d ", primeiroArray[i]);
-        }
-
-    }
-    printf("\n");
     for (int i = 0; i < 9; ++i) {
-        int segundoArray[10 - i]; // Tamanho do array diminui a cada iteração
+        calcularSomaEAtualizar(primeiroArray, 10 - i);
 
-        for (int z = 0; z < 9 - i; ++z) {
-            int soma = primeiroArray[z] + primeiroArray[z + 1];
-            if (z == 8 - i){
-                printf("%d", soma);
-            } else{
-                printf("%d ", soma);
-            }
-
-            segundoArray[z] = soma;
-        }
-        printf("\n");
-
-        for (int z = 0; z < 9 - i; ++z) {
-            primeiroArray[z] = segundoArray[z];
-        }
     }
 
     return 0;
