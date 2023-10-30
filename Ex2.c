@@ -12,7 +12,8 @@ int main(){
     char times[2][200];
 
     for (int j = 0; j < 2; ++j) {
-        scanf("%199s", times[j]);
+        fgets(times[j], sizeof(times[j]), stdin);
+        times[j][strcspn(times[j], "\n")] = '\0';
         for (int i = 0; i < 11; ++i) {
             char nome[200];
             int overral;
@@ -20,6 +21,8 @@ int main(){
             jogadores[i + j * 11].overral = overral;
 
         }
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
     }
 
     double avgPrimeiroTime = (8 * jogadores[0].overral + 10 * (jogadores[1].overral + jogadores[4].overral)
